@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app>
+            <head>
+                        <meta charset="utf-8">
+                        <title>AngularJS - Carrinho de Compras</title>
+                        <script src="angular.min.js"></script>
+            </head>
+            <body ng-controller="HelloController">
+                        <h2>Carrinho de compras</h2>
+                        <ul>
+            <li ng-repeat="item in carrinho">
+                        {{ item.nome }}
+                        <a href="" ng-click="removerItemCarrinho($index)">remover item</a>
+            </li>
+            </ul>
+            <form ng-submit="adicionarItemCarrinho()">
+            <input type="text" ng-model="itemAdicionar" />
+            <input type="submit" value="Adicionar ao carrinho" />
+            </form>
+                        <script>
+                                   function HelloController( $scope ) {
+
+                                               $scope.carrinho = [ { nome : 'Livro AngularJS' }, { nome : 'Livro Aprenda AngularJS em 24h' } ];
+
+                                               $scope.adicionarItemCarrinho = function() {
+                                                           $scope.carrinho.push( { nome : $scope.itemAdicionar } );
+                                                           $scope.itemAdicionar = '';
+                                               };
+
+                                               $scope.removerItemCarrinho = function( index ) {
+                                                           $scope.carrinho.splice( index, 1 );
+                                               };
+                                   }
+                        </script>
+            </body>
+</html>
